@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+    <logger name="org.springframework.web" level="INFO"/>
+    <logger name="org.springboot.sample" level="TRACE" />
+
+    <!-- 开发、测试环境 -->
+    <springProfile name="dev,test">
+        <logger name="org.springframework.web" level="INFO"/>
+        <logger name="org.springboot.sample" level="INFO" />
+        <logger name="com.wuyk.seckill" level="DEBUG" >
+            <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <FileNamePattern>
+                        logs/system.%d{yyyy-MM-dd}.log
+                    </FileNamePattern>
+                    <!-- keep 60 days worth of history -->
+                    <MaxHistory>366</MaxHistory>
+                </rollingPolicy>
+                <append>true</append>
+                <encoder>
+                    <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+                </encoder>
+                <prudent>true</prudent>
+            </appender>
+        </logger>
+    </springProfile>
+
+    <!-- 生产环境 -->
+    <springProfile name="pro">
+        <logger name="org.springframework.web" level="ERROR"/>
+        <logger name="org.springboot.sample" level="ERROR" />
+        <logger name="com.wuyk.seckill" level="DEBUG" >
+            <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <FileNamePattern>
+                        logs/system.%d{yyyy-MM-dd}.log
+                    </FileNamePattern>
+                    <!-- keep 60 days worth of history -->
+                    <MaxHistory>366</MaxHistory>
+                </rollingPolicy>
+                <append>true</append>
+                <encoder>
+                    <pattern>%d{yy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+                </encoder>
+                <prudent>true</prudent>
+            </appender>
+        </logger>
+    </springProfile>
+
+</configuration>

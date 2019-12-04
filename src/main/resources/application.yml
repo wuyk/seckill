@@ -2,6 +2,12 @@ server:
   port: 8081
 
 spring:
+  # 环境 dev|test|pro
+  profiles:
+    active: dev
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
     name: springboot
     type: com.alibaba.druid.pool.DruidDataSource
@@ -12,7 +18,7 @@ spring:
       #mysql驱动
       driver-class-name: com.mysql.jdbc.Driver
       #基本属性
-      url: jdbc:mysql://47.107.81.44:3306/seckill?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&?zeroDateTimeBehavior=convertToNull
+      url: jdbc:mysql://47.107.81.44:3306/seckill?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&
       username: root
       password: 2260930
       #配置初始化大小/最小/最大
@@ -35,8 +41,8 @@ spring:
   #文件上传相关设置
   servlet:
     multipart:
-      max-file-size: 10Mb
-      max-request-size: 100Mb
+      max-file-size: 10000
+      max-request-size: 100000
 
   #devtools插件
   devtools:
@@ -72,7 +78,7 @@ spring:
 #mybatis配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.wuyk.entity
+  type-aliases-package: com.wuyk.seckill.entity
   configuration:
     # 使用jdbc的getGeneratedKeys 可以获取数据库自增主键值
     use-generated-keys: true
@@ -84,7 +90,7 @@ mybatis:
 # 打印sql
 logging:
   level:
-    com.wuyk.mapper: DEBUG
+    com.wuyk.seckill.mapper: DEBUG
 
 
 
