@@ -34,3 +34,4 @@ build/
 /pom.xml
 /HELP.md
 /.mvn/
+/logs/

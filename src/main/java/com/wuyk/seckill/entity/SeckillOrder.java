@@ -1,6 +1,7 @@
 package com.wuyk.seckill.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import java.util.Date;
  * Created by WUYK on 2019-12-04.
  */
 @Data
+@ToString
 public class SeckillOrder implements Serializable {
 
     /**
