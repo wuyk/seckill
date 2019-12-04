@@ -4,21 +4,39 @@
 
 <mapper namespace="com.wuyk.seckill.mapper.SeckillMapper">
 
-    <select id="findAll" resultType="Seckill">
-        SELECT * FROM seckill
+    <select id="findAll" resultType="com.wuyk.seckill.entity.Seckill">
+        SELECT seckill_id,
+               title,
+               image,
+               price,
+               cost_price,
+               stock_count,
+               start_time,
+               end_time,
+               create_time
+        FROM seckill
     </select>
 
-    <select id="findById" resultType="Seckill">
-        SELECT * FROM seckill WHERE seckill_id = #{id}
+    <select id="findById" resultType="com.wuyk.seckill.entity.Seckill">
+        SELECT seckill_id,
+               title,
+               image,
+               price,
+               cost_price,
+               stock_count,
+               start_time,
+               end_time,
+               create_time
+        FROM seckill
+        WHERE seckill_id = #{id}
     </select>
 
     <update id="reduceStock">
         UPDATE seckill
         SET stock_count = stock_count - 1
         WHERE seckill_id = #{seckillId}
-        AND start_time &lt;= #{killTime}
-        AND end_time &gt;= #{killTime}
-        AND stock_count &gt; 0
+          AND start_time &lt;= #{killTime}
+          AND end_time &gt;= #{killTime}
+          AND stock_count &gt; 0
     </update>
-
 </mapper>
