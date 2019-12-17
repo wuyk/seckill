@@ -55,8 +55,8 @@ public class SeckillServiceImpl implements SeckillService {
             for (Seckill seckill : seckillList) {
                 //将秒杀列表数据依次放入redis缓存中，key:秒杀表的ID值；value:秒杀商品数据
                 redisTemplate.boundHashOps(key).put(seckill.getSeckillId(), seckill);
-                log.info("findAll -> 从数据库中读取放入缓存中");
             }
+            log.info("findAll -> 从数据库中读取放入缓存中");
         } else {
             log.info("findAll -> 从缓存中读取");
         }
