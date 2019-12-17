@@ -32,8 +32,10 @@ public class SeckillController {
     public SeckillController(SeckillService seckillService) {
         this.seckillService = seckillService;
     }
+
     /**
      * 跳转到秒杀商品页
+     *
      * @return
      */
     @RequestMapping("/seckill")
@@ -69,7 +71,7 @@ public class SeckillController {
 
     @ResponseBody
     @RequestMapping(value = "/seckill/{seckillId}/exposer",
-            method = RequestMethod.POST, produces = {"application/json;charset=UTF-8"})
+            method = RequestMethod.POST, consumes = "application/json")
     public SeckillResult<Exposer> exposer(@PathVariable("seckillId") Long seckillId) {
         SeckillResult<Exposer> result;
         try {
@@ -82,9 +84,7 @@ public class SeckillController {
         return result;
     }
 
-    @RequestMapping(value = "/seckill/{seckillId}/{md5}/execution",
-            method = RequestMethod.POST,
-            produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value = "/seckill/{seckillId}/{md5}/execution", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     public SeckillResult<SeckillExecution> execute(@PathVariable("seckillId") Long seckillId,
                                                    @PathVariable("md5") String md5,
@@ -110,7 +110,7 @@ public class SeckillController {
 
     @ResponseBody
     @GetMapping(value = "/seckill/time/now")
-    public SeckillResult<Long> time() {
+    public SeckillResult time() {
         Date now = new Date();
         return new SeckillResult(true, now.getTime());
     }
